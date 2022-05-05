@@ -1,9 +1,10 @@
 import { app } from './firebaseConfig.js';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+//import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 
    
-    let auth = getAuth();
+    let auth = getAuth(app);
     let googleProvider = new GoogleAuthProvider();
     const form = document.getElementById("formLogin");
 
