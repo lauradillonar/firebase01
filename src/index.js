@@ -1,7 +1,7 @@
 import { app, database } from './firebaseConfig.js';
 //import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { getModularInstance } from '@firebase/util';
+
  
     const collectionRef = collection(database, "users");
 
