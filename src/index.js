@@ -1,11 +1,9 @@
-import { app } from './firebaseConfig.js';
+import { app, database } from './firebaseConfig.js';
 //import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
+ 
+    const collectionRef = collection(database, "users");
 
-
-   
-    let auth = getAuth(app);
-    let googleProvider = new GoogleAuthProvider();
     const form = document.getElementById("formLogin");
 
     form.addEventListener("submit", loginForm);
@@ -22,20 +20,19 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
             password: password
         }
 
-        console.log(data);
-
         handleSubmit(data);
 
         form.reset();
     }
 
     function handleSubmit(data){
-        signInWithPopup(auth, googleProvider)
-            .then((response)=>{
-                console.log(response.user);
+        console.log(data);
+        addDoc(collectionRef, data)
+            .then(()=>{
+                alert("Data Added");
             })
-            .catch((err)=>{
-                alert(err.message);
-            })
+            .catch((err)=> {
+                alert(err.message)
+            });
     }
 
