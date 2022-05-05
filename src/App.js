@@ -1,9 +1,10 @@
 import { app } from './firebaseConfig.js';
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
 
    
     let auth = getAuth();
+    let googleProvider = new GoogleAuthProvider();
     const form = document.getElementById("formLogin");
 
     form.addEventListener("submit", loginForm);
@@ -28,7 +29,7 @@ import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/fir
     }
 
     function handleSubmit(data){
-        signInWithEmailAndPassword(auth, data.email, data.password)
+        signInWithPopup(auth, googleProvider)
             .then((response)=>{
                 console.log(response.user);
             })
