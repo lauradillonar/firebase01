@@ -1,7 +1,7 @@
 import { app } from './firebaseConfig.js';
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
-export default function App() {
+
    
     let auth = getAuth();
     const form = document.getElementById("formLogin");
@@ -9,7 +9,7 @@ export default function App() {
     form.addEventListener("submit", loginForm);
 
     function loginForm(event){
-        console.log("loginFOrm");
+        console.log("loginForm");
         event.preventDefault();
 
         const email = document.getElementById("email").value;
@@ -28,7 +28,7 @@ export default function App() {
     }
 
     function handleSubmit(data){
-        createUserWithEmailAndPassword(auth, data.email, data.password)
+        signInWithEmailAndPassword(auth, data.email, data.password)
             .then((response)=>{
                 console.log(response.user);
             })
@@ -37,7 +37,3 @@ export default function App() {
             })
     }
 
-    App();
-
-
-}
