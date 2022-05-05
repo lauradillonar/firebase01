@@ -5,7 +5,8 @@ import {
     addDoc, 
     getDocs,
     doc, 
-    updateDoc } from 'firebase/firestore';
+    updateDoc,
+    deleteDoc } from 'firebase/firestore';
 
  
     const collectionRef = collection(database, "users");
@@ -15,6 +16,9 @@ import {
 
     const updateButton = document.getElementById("updateButton");
     updateButton.addEventListener("click", updateDatum);
+
+    const deleteButton = document.getElementById("deleteButton");
+    deleteButton.addEventListener("click", deletetoDoc);
 
     const form = document.getElementById("formLogin");
     form.addEventListener("submit", loginForm);
@@ -36,6 +40,17 @@ import {
         })
             .then(()=>{
                 alert("Data Updated");
+            })
+            .catch((err)=>{
+                alert(err.message);
+            });
+    }
+
+    function deletetoDoc(){
+        const docToDelete = doc(database, "users","xDN895ajhsvxdv1c6ZAy");
+        deleteDoc(docToDelete)
+            .then(()=>{
+                alert("Data Deleted");
             })
             .catch((err)=>{
                 alert(err.message);
